@@ -6,6 +6,6 @@ export function fetchPosts() {
   const request = api.Posts.getList();
   return {
     type: FETCH_POSTS,
-    payload: {}
+    payload: request
   }
 }

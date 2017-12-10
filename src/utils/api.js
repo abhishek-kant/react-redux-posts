@@ -4,7 +4,7 @@ let api = {
 }
 
 const BASE_URL = "http://reduxblog.herokuapp.com/api";
-const API_KEY = "f1da4f7a-ba83-4c54-a7ba-2d8a1f800cc6"
+const API_KEY = "PAPERCLIP1234"
 
 api.Posts.getList = () => {
   return axios.get(`${BASE_URL}/posts`, {
