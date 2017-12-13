@@ -25,5 +25,12 @@ api.Posts.create = (formData) => {
   })
 };
 
+api.Posts.delete = (id) => {
+  return axios.delete(`${BASE_URL}/posts/${id}`, {
+    params: {key: API_KEY}
+  })
+};
+
+
 export default api
 

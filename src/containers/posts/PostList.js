@@ -16,7 +16,7 @@ class PostList extends React.Component{
 
     return _.map(this.props.posts,post => {
         return(
-          <Link to={`/posts/${post.id}`}>
+          <Link key={post.id} to={`/posts/${post.id}`}>
             <ListItem primaryText={post.title}></ListItem>
           </Link>
         )

@@ -2,14 +2,19 @@ import React from 'react'
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
 import FlatButton from 'material-ui/FlatButton';
-import { fetchPostDetail } from '../../actions/index'
+import { fetchPostDetail, deletePost } from '../../actions/index'
 
 
 class PostDetail extends React.Component{
 
   componentDidMount(){
-    const id = this.props.match.params.id
+    const {id} = this.props.match.params
     this.props.fetchPostDetail(id);
+  }
+
+  handleDelete(){
+    const {id} = this.props.match.params
+    this.props.deletePost(id, () => this.props.history.push("/"))
   }
 
   render(){
@@ -29,6 +34,9 @@ class PostDetail extends React.Component{
         <div>
           {post.content}
         </div>
+
+        <FlatButton label="Delete post" secondary={true} onClick={this.handleDelete.bind(this)} fullWidth={true} />
+
       </div>
     )
   }
@@ -41,5 +49,5 @@ function matchPropsToState({ posts }, ownProps) {
   }
 }
 
-export default connect(matchPropsToState, { fetchPostDetail } )(PostDetail)
+export default connect(matchPropsToState, { fetchPostDetail, deletePost } )(PostDetail)
 
