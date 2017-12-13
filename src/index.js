@@ -8,6 +8,7 @@ import './index.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PostList from './containers/posts/PostList';
 import PostNew from './containers/posts/PostNew'
+import PostDetail from './containers/posts/PostDetail'
 import registerServiceWorker from './registerServiceWorker';
 import reducers from './reducers'
 
@@ -22,6 +23,7 @@ ReactDOM.render(
         <div className="main-content">
           <Switch>
             <Route path="/posts/new" component={PostNew} />
+            <Route path="/posts/:id" component={PostDetail} />
             <Route path="/" component={PostList} />
           </Switch>
         </div>

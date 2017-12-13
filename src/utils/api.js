@@ -12,6 +12,12 @@ api.Posts.getList = () => {
   })
 };
 
+api.Posts.get = (id) => {
+  return axios.get(`${BASE_URL}/posts/${id}`, {
+    params: {key: API_KEY}
+  })
+};
+
 api.Posts.create = (formData) => {
   return axios.post(`${BASE_URL}/posts`, {
     key: API_KEY,
