@@ -12,8 +12,9 @@ export function fetchPosts() {
   }
 }
 
-export function createPost(formData) {
-  const request = api.Posts.create(formData);
+export function createPost(formData, callback) {
+  const request = api.Posts.create(formData)
+    .then(() => callback());
   return {
     type: CREATE_POST,
     payload: request

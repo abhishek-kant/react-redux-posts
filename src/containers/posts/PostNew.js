@@ -1,7 +1,10 @@
 import React from 'react'
 import {reduxForm, Field} from 'redux-form'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import {createPost} from '../../actions'
+import './posts.css'
+
 import {
   Checkbox,
   RadioButtonGroup,
@@ -19,12 +22,12 @@ const required = (value) => (value == null ? 'Required' : undefined)
 
 
   onSubmit(formData){
-    this.props.createPost(formData)
+    this.props.createPost(formData, () => {
+      this.props.history.push('/')
+    })
   }
 
-  onClick(){
-    this.refs.form.submit();
-  }
+
 
   render(){ return(
     <form ref='form' onSubmit={this.props.handleSubmit(this.onSubmit.bind(this))}>
@@ -52,7 +55,8 @@ const required = (value) => (value == null ? 'Required' : undefined)
       />
       <br />
 
-      <RaisedButton type='submit' disabled={this.props.submitting}  label="Primary" primary={true}  />
+      <RaisedButton className='form-buttons' type='submit' disabled={this.props.submitting}  label="Primary" primary={true}  />
+      <Link className='form-buttons' to='/'><RaisedButton label="Default"  label="Cancel" /></Link>
     </form>
   )}
 }
