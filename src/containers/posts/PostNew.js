@@ -1,5 +1,7 @@
 import React from 'react'
 import {reduxForm, Field} from 'redux-form'
+import { connect } from 'react-redux'
+import {createPost} from '../../actions'
 import {
   Checkbox,
   RadioButtonGroup,
@@ -16,8 +18,8 @@ const required = (value) => (value == null ? 'Required' : undefined)
  class PostNew extends React.Component{
 
 
-  onSubmit(){
-
+  onSubmit(formData){
+    this.props.createPost(formData)
   }
 
   onClick(){
@@ -38,6 +40,7 @@ const required = (value) => (value == null ? 'Required' : undefined)
         name="categories"
         component={TextField}
         floatingLabelText="Categories"
+        validate={required}
       />
       <br />
 
@@ -45,13 +48,17 @@ const required = (value) => (value == null ? 'Required' : undefined)
         name="content"
         component={TextField}
         floatingLabelText="Post content"
+        validate={required}
       />
       <br />
-      <RaisedButton onClick={this.onClick.bind(this)} label="Primary" primary={true}  />
+
+      <RaisedButton type='submit' disabled={this.props.submitting}  label="Primary" primary={true}  />
     </form>
   )}
 }
 
 export default reduxForm({
   form: "PostNewForm"
-})(PostNew)
+})(
+  connect(null, {createPost})(PostNew)
+)
